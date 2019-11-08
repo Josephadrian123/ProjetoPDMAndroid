@@ -19,8 +19,10 @@ class PlantaAdapter(var context: Context, var listPlantas: ArrayList<Planta>) : 
             layout = convertView
         }
 
-        val tv = layout.findViewById<TextView>(R.id.nome_planta)
-        tv.text = planta.nome
+        val tvNome = layout.findViewById<TextView>(R.id.nome_planta)
+        tvNome.text = planta.nome
+        val tvCategoria = layout.findViewById<TextView>(R.id.tv_time)
+        tvCategoria.text = planta.categoria
 
 
         return layout
