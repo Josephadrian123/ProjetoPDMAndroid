@@ -8,16 +8,27 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <Button
+
+
+    <!--<Button
             android:id="@+id/btMainCadastrar"
             android:text="Cadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-    />
+    />-->
+
     <FrameLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btMainCadastrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@android:drawable/ic_input_add"/>
     <GridView
             android:id="@+id/gvMainPlanta"
             android:numColumns="3"
@@ -26,8 +37,10 @@
             android:layout_height="wrap_content"
     >
 
+
     </GridView>
     </FrameLayout>
+
 
 
 </LinearLayout>

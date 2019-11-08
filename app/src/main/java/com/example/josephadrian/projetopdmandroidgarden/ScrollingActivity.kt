@@ -1,10 +1,14 @@
 package com.example.josephadrian.projetopdmandroidgarden
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_scrolling.*
@@ -14,27 +18,28 @@ class ScrollingActivity : AppCompatActivity() {
     private lateinit var tvNomePlanta: TextView
     private lateinit var tvCategoriaPlanta: TextView
     private lateinit var tvDescricaoPlanta: TextView
+    private lateinit var btApagar: FloatingActionButton
+    private lateinit var p: Planta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
         setSupportActionBar(toolbar)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         this.ivPlanta = findViewById(R.id.ivScrolling)
         this.tvNomePlanta = findViewById(R.id.tvScrollingNome)
         this.tvCategoriaPlanta = findViewById(R.id.tvScrollingCategoria)
         this.tvDescricaoPlanta = findViewById(R.id.tvScrollingDescricao)
-
-        var planta = intent.getSerializableExtra("PLANTA")
+        this.btApagar = findViewById(R.id.btScrollApagar)
+        this.btApagar.setOnClickListener({Apagar(it)})
+        this.p = intent.getSerializableExtra("PLANTA") as Planta
+        val planta = intent.getSerializableExtra("PLANTA")
         //setar imagem aqui
         //  ---------
         //
         this.tvNomePlanta.text = (planta as Planta).nome
         this.tvCategoriaPlanta.text = planta.categoria
-        //this.tvDescricaoPlanta.text = planta.descricao
+        this.tvDescricaoPlanta.text = planta.descricao
 
     }
 
@@ -53,5 +58,16 @@ class ScrollingActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun Apagar(view: View){
+
+            //val itResp = Intent()
+
+            //itResp.putExtra("PLANTA", this.p)
+           // setResult(Activity.RESULT_OK)
+            finish()
+
+
     }
 }

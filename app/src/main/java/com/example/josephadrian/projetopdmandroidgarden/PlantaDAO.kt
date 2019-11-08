@@ -1,9 +1,6 @@
 package com.example.josephadrian.projetopdmandroidgarden
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 
 @Dao
 interface PlantaDAO {
@@ -20,5 +17,6 @@ interface PlantaDAO {
     @Update
     fun updatePlanta(planta: Planta): Int
 
-
+    @Delete
+    fun delete(planta: Planta)
 }

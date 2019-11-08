@@ -13,13 +13,13 @@ class Planta: Serializable {
     var id: Long = 0
     var nome: String
     var categoria:String
-    //var descricao: String
+    var descricao: String
 
 
-    constructor(nome: String, categoria: String /*,descricao: String*/){
+    constructor(nome: String, categoria: String ,descricao: String){
         this.nome = nome
         this.categoria = categoria
-        //this.descricao = descricao
+        this.descricao = descricao
     }
 
 }

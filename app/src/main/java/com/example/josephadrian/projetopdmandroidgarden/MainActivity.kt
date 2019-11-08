@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import android.util.Log
@@ -23,11 +24,12 @@ class MainActivity : AppCompatActivity() {
     val CADASTRO = 1
     val ATUALIZAR = 2
     var POSITION_EDIT = -1
+    val DELETAR = 3
     private lateinit var plantaDao: PlantaDAO
     private lateinit var adapter: PlantaAdapter
     private lateinit var lvPlantas: GridView
     private lateinit var lista: ArrayList<Planta>
-    private lateinit var btCadastrar: Button
+    private lateinit var btCadastrar: FloatingActionButton
     private lateinit var telaReceiver: TelaReceiver
 
 
@@ -80,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             val it = Intent(this@MainActivity, ScrollingActivity::class.java)
             it.putExtra("PLANTA", planta)
            // Log.i("TESTE", "")
-            startActivity(it)
+            startActivityForResult(it, DELETAR)
 
         }
     }
@@ -115,12 +117,15 @@ class MainActivity : AppCompatActivity() {
         (this.lvPlantas.adapter as PlantaAdapter).update()
     }
 
-    fun updatePlanta(id: Int, nome: String, categoria: String) {
+    fun updatePlanta(id: Int, nome: String, categoria: String, descricao: String) {
         val planta = plantaDao.getPlanta(id)
         planta.nome = nome
         planta.categoria = categoria
+        planta.descricao = descricao
         plantaDao.updatePlanta(planta)
     }
+
+
 
 
 
@@ -129,17 +134,22 @@ class MainActivity : AppCompatActivity() {
 
         if (resultCode == Activity.RESULT_OK){
             if (requestCode == CADASTRO){
+
                 val p = data?.getSerializableExtra("PLANTA") as Planta
-
-
                 this.plantaDao.add(p)
 
                 this.atualizar()
             }else if(requestCode == ATUALIZAR){
                 val p = data?.getSerializableExtra("PLANTA") as Planta
 
-                this.updatePlanta(POSITION_EDIT + 1, p.nome, p.categoria)
+                this.updatePlanta(POSITION_EDIT + 1, p.nome, p.categoria, p.descricao)
                 this.atualizar()
+            }else if(requestCode == DELETAR){
+                val p = data?.getSerializableExtra("PLANTA") as Planta
+
+                    plantaDao.delete(p)
+                    this.atualizar()
+
             }
         }
     }

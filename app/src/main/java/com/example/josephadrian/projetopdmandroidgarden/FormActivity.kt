@@ -18,6 +18,8 @@ class FormActivity : AppCompatActivity() {
     private lateinit var etCategoria: EditText
     private lateinit var btEnviar: Button
     private lateinit var plantaDao: PlantaDAO
+    private lateinit var etDica: EditText
+    private lateinit var btCancelar: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +32,10 @@ class FormActivity : AppCompatActivity() {
         this.etNome = findViewById(R.id.etFormNome)
         this.etCategoria = findViewById(R.id.etFormCategoria)
         this.btEnviar = findViewById(R.id.btFormEnviar)
-
+        this.btCancelar = findViewById(R.id.btFormCancelar)
+        this.etDica = findViewById(R.id.etFormDica)
         this.btEnviar.setOnClickListener(Onclick())
-
+        this.btCancelar.setOnClickListener({finish()})
         var planta = intent.getSerializableExtra("PLANTA")
         if(planta != null){
             this.etNome.text.append((planta as Planta).nome)
@@ -52,7 +55,8 @@ class FormActivity : AppCompatActivity() {
 
                 val nome = this@FormActivity.etNome.text.toString()
                 val categoria = this@FormActivity.etCategoria.text.toString()
-                val planta = Planta(nome, categoria)
+                var dica = this@FormActivity.etDica.text.toString()
+                val planta = Planta(nome, categoria, dica)
 
 
                 val itResp = Intent()

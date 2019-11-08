@@ -9,24 +9,58 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_form"
         tools:context=".FormActivity"
+        android:gravity="center"
 >
 
     <EditText
             android:id="@+id/etFormNome"
             android:hint="Nome"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90px"
+            android:layout_marginRight="90px"/>
 
     <EditText
             android:id="@+id/etFormCategoria"
             android:hint="Categoria"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90px"
+            android:layout_marginRight="90px"/>
 
-    <Button
-            android:id="@+id/btFormEnviar"
-            android:text="Enviar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <EditText
+            android:id="@+id/etFormDica"
+            android:hint="Dica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90px"
+            android:layout_marginRight="90px"
+            android:minLines="5"/>
+
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <Button
+                android:layout_marginTop="20px"
+                android:id="@+id/btFormEnviar"
+                android:text="Enviar"
+                android:layout_marginRight="10px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <Button
+                android:layout_marginTop="20px"
+                android:layout_marginLeft="10px"
+                android:id="@+id/btFormCancelar"
+                android:text="Cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>
